@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->name('api.v1.')->group(function() {
+    Route::get('version', function() {
+        return response()->api('null','','version1',200);
+    })->name('version');
+});
+
+Route::prefix('v2')->name('api.v2.')->group(function() {
+    Route::get('version', function() {
+        return response()->api('null','','version2',200);
+    })->name('version');
 });

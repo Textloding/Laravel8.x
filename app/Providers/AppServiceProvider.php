@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\ResponseFactory;
+use App\Contracts\ResponseFactory as ResponseFactoryContract;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //绑定自定义API响应接口到实现类
+        $this->app->bind(ResponseFactoryContract::class, ResponseFactory::class);
+
     }
 
     /**
