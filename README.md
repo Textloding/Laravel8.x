@@ -8,6 +8,19 @@
 </p>
 
 > 这是一个基于laravel8.x和dcatadmin的模块化练习项目
+
+### 初始化操作
+##### 1.加载依赖 <br  />
+`composer update`
+##### 2.数据库配置 <br  />
+##### 3.数据库迁移 <br  />
+`php artisan migrate`
+##### 4.发布资源 <br  />
+`php artisan admin:publish`
+##### 5.注入admin <br  />
+`php artisan admin:install`
+##### 6.运行项目 <br  />
+
 ### 已完成模块
 1. Laravel基础安装
 2. Dcatadmin安装
