@@ -21,7 +21,14 @@
 `php artisan admin:publish`
 ##### 6.注入admin <br  />
 `php artisan admin:install`
-##### 7.运行项目 <br  />
+##### 7.生成appkey <br  />
+`php artisan key:generate`
+##### 8.运行项目 <br  />
+```
+后台入口:http://你的域名/admin 
+账号:admin
+密码:admin
+```
 
 ### 已完成模块
 1. Laravel基础安装
