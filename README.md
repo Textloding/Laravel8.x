@@ -10,7 +10,7 @@
 > 这是一个基于laravel8.x和dcatadmin的模块化练习项目
 ### 已完成模块
 1. Laravel基础安装
-2. 
+2. Dcatadmin安装
 
 
 
