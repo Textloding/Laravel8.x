@@ -42,6 +42,7 @@
 ### 已完成模块
 1. Laravel基础安装
 2. Dcatadmin安装
+3. Api响应规则统一规范
 
 
 
