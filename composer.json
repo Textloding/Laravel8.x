@@ -11,7 +11,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "overtrue/easy-sms": "^2.6",
+        "overtrue/laravel-lang": "^5.0",
+        "propaganistas/laravel-phone": "^4.4",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

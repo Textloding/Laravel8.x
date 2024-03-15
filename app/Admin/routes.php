@@ -1,5 +1,6 @@
 <?php
 
+use App\Admin\Controllers\ApiSwitchController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Dcat\Admin\Admin;
@@ -13,5 +14,9 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
+    $router->get('/api-switches', [ApiSwitchController::class,'index']);
+    $router->post('/api-switches', [ApiSwitchController::class,'save']);
+
+
 
 });
