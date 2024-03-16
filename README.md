@@ -22,19 +22,21 @@
 `php artisan admin:publish`
 ##### 6.注入admin <br  />
 `php artisan admin:install`
-##### 7.生成appkey（生产环境请执行） <br  />
+##### 7.注入菜单 <br  />
+`php artisan db:seed --class=CustomMenuSeeder`
+##### 8.生成appkey（生产环境请执行） <br  />
 `php artisan key:generate`
-##### 8.生成jwt-secret（生产环境请执行） <br  />
+##### 9.生成jwt-secret（生产环境请执行） <br  />
 `php artisan jwt:secret`
-##### 9.生成路由缓存文件（生产环境请执行，路由更改后请清理缓存后再执行） <br  />
+##### 10.生成路由缓存文件（生产环境请执行，路由更改后请清理缓存后再执行） <br  />
 `php artisan cache:route`
-##### 10.生成配置缓存文件 （生产环境请执行，.env文件以及配置文件更改后请清理缓存后再执行） <br  />
+##### 11.生成配置缓存文件 （生产环境请执行，.env文件以及配置文件更改后请清理缓存后再执行） <br  />
 `php artisan config:cache`
-##### 11.生成视图缓存文件（生产环境请执行，视图更改后请清理缓存后再执行） <br  />
+##### 12.生成视图缓存文件（生产环境请执行，视图更改后请清理缓存后再执行） <br  />
 `php artisan view:cache`
-##### 12.生成事件和监听器缓存文件（生产环境请执行，事件和监视器更改后请清理缓存后再执行） <br  />
+##### 13.生成事件和监听器缓存文件（生产环境请执行，事件和监视器更改后请清理缓存后再执行） <br  />
 `php artisan event:cache`
-##### 13.运行项目 <br  />
+##### 14.运行项目 <br  />
 `php artisan serve`
 ```
 后台入口:http://你的域名/admin 
