@@ -22,6 +22,8 @@
 `php artisan admin:publish`
 ##### 6.注入admin <br  />
 `php artisan admin:install`
+##### 7.注入菜单 <br  />
+`php artisan db:seed --class=CustomMenuSeeder`
 ##### 7.生成appkey（生产环境请执行） <br  />
 `php artisan key:generate`
 ##### 8.生成jwt-secret（生产环境请执行） <br  />
