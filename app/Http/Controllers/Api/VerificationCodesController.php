@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Service\ApiSwitchService;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Overtrue\EasySms\EasySms;
@@ -9,12 +10,20 @@ use App\Http\Requests\Api\VerificationCodeRequest;
 
 class VerificationCodesController extends Controller
 {
+    protected $service; // 不在这里指定类型
+
+    public function __construct(ApiSwitchService $service)
+    {
+        $this->service = $service; // 在构造方法中注入实例
+    }
     public function store(VerificationCodeRequest $request, EasySms $easySms)
     {
         // 格式化手机号 去除 +86 去除空格
         $phone = ltrim(phone($request->phone, 'CN', 'E164'), '+86');
 
-        if (config('api_switch.阿里云短信') == 0) {
+
+        //控制验证码以及是否真实发送短信
+        if ($this->service->getSwitch('阿里云短信') === false) {
             $code = '1234';
 
         } else {
