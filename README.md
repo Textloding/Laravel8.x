@@ -52,7 +52,8 @@
 **[tymon/jwt-auth](https://github.com/tymondesigns/jwt-auth)** <br  />
 **[propaganistas/laravel-phone](https://github.com/Propaganistas/Laravel-Phone)** <br  />
 **[overtrue/easy-sms](https://github.com/overtrue/easy-sms)** <br  />
-并开发后台阿里云短信开关按钮和配置基础注册登录api接口
+**[overtrue/laravel-socialite](https://github.com/overtrue/laravel-socialite)** <br  />
+开发后台阿里云短信、第三方登录开关按钮和配置基础注册登录三方登录api接口
 
 
 

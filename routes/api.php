@@ -27,6 +27,11 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function() {
     // 用户注册
     Route::post('users', [UsersController::class, 'store'])
         ->name('users.store');
+    // 第三方登录
+    Route::post('socials/{social_type}/authorizations', [AuthorizationsController::class, 'socialStore'])
+        ->where('social_type', 'wechat')
+        //可多配置   例：->where('social_type', 'wechat|weibo|qq')
+        ->name('socials.authorizations.store');
     // 登录
     Route::post('authorizations', [AuthorizationsController::class,'store'])
         ->name('authorizations.store');
