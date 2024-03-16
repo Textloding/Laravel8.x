@@ -35,6 +35,9 @@ return [
             'client_secret' => env('WEIXIN_SECRET'),
             'redirect' => env('WEIXIN_REDIRECT_URI'),
         ],
-    ]
+    ],
+    'dashscope' => [
+        'api_key' => env('DASHSCOPE_API_KEY'),
+    ],
 
 ];

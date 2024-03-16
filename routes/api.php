@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthorizationsController;
+use App\Http\Controllers\Api\DashScopeController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\VerificationCodesController;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function() {
     Route::put('authorizations/current', [AuthorizationsController::class, 'update'])->name('authorizations.update');
     // 删除token
     Route::delete('authorizations/current', [AuthorizationsController::class, 'destroy'])->name('authorizations.destroy');
+    //阿里通义千问 todo::正常要加进登陆后的路由
+    Route::post('dashscope/generate-text', [DashScopeController::class, 'generateText']);
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {

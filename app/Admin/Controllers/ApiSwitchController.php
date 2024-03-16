@@ -33,6 +33,9 @@ class ApiSwitchController extends AdminController
                     case '阿里云短信':
                         $helpText = '关闭后api获取验证码为默认1234并且不会发送短信';
                         break;
+                    case '阿里通义千问':
+                        $helpText = '关闭后则不再调用接口';
+                        break;
                     case '微信登陆':
                         $helpText = '关闭后则不允许微信第三方登录';
                         break;
