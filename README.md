@@ -12,8 +12,8 @@
 ### 初始化操作
 ##### 1.加载依赖 <br  />
 `composer update`
-##### 2.数据库配置 <br  />
-修改.env文件中的数据库配置
+##### 2.数据库以及其他配置 <br  />
+修改.env文件中的数据库以及其他配置
 ##### 3.安装Dcatadmin <br  />
 `composer require dcat/laravel-admin:"2.*" -vvv`   
 ##### 4.数据库迁移 <br  />
@@ -54,6 +54,7 @@
 **[overtrue/easy-sms](https://github.com/overtrue/easy-sms)** <br  />
 **[overtrue/laravel-socialite](https://github.com/overtrue/laravel-socialite)** <br  />
 开发后台阿里云短信、第三方登录开关按钮和配置基础注册登录三方登录api接口
+5. 使用curl封装最简访问阿里通义千问模型(api路由正式环境请放入需要登陆的路由组内)
 
 
 
