@@ -55,11 +55,12 @@
 **[overtrue/laravel-socialite](https://github.com/overtrue/laravel-socialite)** <br  />
 开发后台阿里云短信、第三方登录开关按钮(开关请注意config/api_switch.php权限问题)和配置基础注册登录三方登录api接口
 5. 使用curl封装最简访问阿里通义千问模型(api路由正式环境请放入需要登陆的路由组内)
+6. 接入[yansongda/pay](https://github.com/yansongda/pay)配置支付宝支付并简单创建页面支付模块（路由在config/web.php）
 
 
 
 ### 待完成模块
-
+- 微信支付接入
 
 
 

@@ -150,10 +150,12 @@ class AuthorizationsController extends Controller
     }
     protected function respondWithToken($token)
     {
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
             'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
         ]);
     }
+
 }

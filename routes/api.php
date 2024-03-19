@@ -42,6 +42,7 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function() {
     Route::delete('authorizations/current', [AuthorizationsController::class, 'destroy'])->name('authorizations.destroy');
     //阿里通义千问 todo::正常要加进登陆后的路由
     Route::post('dashscope/generate-text', [DashScopeController::class, 'generateText']);
+
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {

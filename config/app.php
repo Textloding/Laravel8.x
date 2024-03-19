@@ -238,5 +238,6 @@ return [
         'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
 
     ],
+    'ngrok_url' => env('NGROK_URL'),
 
 ];

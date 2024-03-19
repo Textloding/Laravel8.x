@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// 支付宝页面支付
+Route::get('alipay',[\App\Http\Controllers\pay::class,'alipay']);
