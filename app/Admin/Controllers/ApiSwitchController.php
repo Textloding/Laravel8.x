@@ -95,8 +95,8 @@ JS;
                     case '阿里云短信':
                         $helpText = '关闭后api获取验证码为默认1234并且不会发送短信';
                         break;
-                    case '微信小程序登陆':
-                        $helpText = '关闭后则不允许微信小程序登录';
+                    case '微信登陆':
+                        $helpText = '关闭后则不允许微信登录';
                         break;
                 }
                 // 直接使用switch组件
