@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-> 这是一个基于laravel8.x和dcatadmin的模块化练习项目
+> 这是一个基于laravel8.x和dcatadmin的集成快速开发框架，包含api接口、后台管理等基础通用功能。
 
 ### 初始化操作
 ##### 1.加载依赖 <br  />
