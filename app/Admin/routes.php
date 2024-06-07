@@ -16,6 +16,8 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->get('/api-switches', [ApiSwitchController::class,'index']);
     $router->post('/api-switches', [ApiSwitchController::class,'save']);
+    $router->post('/api-switches/clear-cache', [ApiSwitchController::class,'clearConfigCache'])->name('api-switches.clear-cache');
+    $router->post('/api-switches/cache-config', [ApiSwitchController::class,'cacheConfig'])->name('api-switches.cache-config');
 
 
 
