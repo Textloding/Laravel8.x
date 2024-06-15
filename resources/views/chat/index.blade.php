@@ -33,7 +33,6 @@
             background: #1e1e1e;
         }
         .dark-mode .btn-primary {
-            text-align: right;
             background-color: #1e88e5;
             border-color: #1e88e5;
         }
@@ -51,11 +50,13 @@
         <div id="answer" class="mt-3"></div>
     </div>
     <form id="chat-form" class="mt-4">
-        <div class="form-group">
-            <label for="question">你的问题:</label>
+        <label for="question">你的问题:</label>
+        <div class="form-group d-flex">
             <textarea id="question" class="form-control" rows="3" required style="resize: none;"></textarea>
+            <button type="submit" class="btn btn-primary" style="margin-left:10px;">提问</button>
+            
         </div>
-        <button type="submit" class="btn btn-primary  float-right mt-3">提问</button>
+        
     </form>
 </div>
 
