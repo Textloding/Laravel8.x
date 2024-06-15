@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,5 @@ Route::get('/', function () {
 });
 // 支付宝页面支付
 Route::get('alipay',[\App\Http\Controllers\pay::class,'alipay']);
+Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/chat/generate', [ChatController::class, 'generate'])->name('chat.generate');
