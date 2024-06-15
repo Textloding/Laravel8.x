@@ -101,9 +101,14 @@ JS;
                     case '微信登陆':
                         $helpText = '关闭后则不允许微信登录';
                         break;
+                    case '图片上传':
+                        $helpText = '关闭后则不允许接口上传图片';
+                        break;
                 }
-                // 直接使用switch组件
-                $form->switch($key)->default($enabled)->help($helpText);
+
+                    // 直接使用switch组件
+                    $form->switch($key)->default($enabled)->help($helpText);
+
             }
             // 隐藏重置按钮
             $form->disableResetButton();

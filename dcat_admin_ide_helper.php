@@ -42,6 +42,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection path
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection tokenable_type
@@ -50,6 +51,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection last_used_at
      * @property Grid\Column|Collection phone
      * @property Grid\Column|Collection email_verified_at
+     * @property Grid\Column|Collection weixin_openid
+     * @property Grid\Column|Collection weixin_unionid
      *
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
@@ -82,6 +85,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection path(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
@@ -90,6 +94,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection last_used_at(string $label = null)
      * @method Grid\Column|Collection phone(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
+     * @method Grid\Column|Collection weixin_openid(string $label = null)
+     * @method Grid\Column|Collection weixin_unionid(string $label = null)
      */
     class Grid {}
 
@@ -127,6 +133,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection path
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection tokenable_type
@@ -135,6 +142,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection last_used_at
      * @property Show\Field|Collection phone
      * @property Show\Field|Collection email_verified_at
+     * @property Show\Field|Collection weixin_openid
+     * @property Show\Field|Collection weixin_unionid
      *
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
@@ -167,6 +176,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection path(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)
@@ -175,6 +185,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection last_used_at(string $label = null)
      * @method Show\Field|Collection phone(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
+     * @method Show\Field|Collection weixin_openid(string $label = null)
+     * @method Show\Field|Collection weixin_unionid(string $label = null)
      */
     class Show {}
 

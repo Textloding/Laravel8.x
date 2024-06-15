@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthorizationsController;
 use App\Http\Controllers\Api\DashScopeController;
+use App\Http\Controllers\Api\ImagesController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\VerificationCodesController;
 use Illuminate\Http\Request;
@@ -42,6 +43,16 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function() {
     Route::delete('authorizations/current', [AuthorizationsController::class, 'destroy'])->name('authorizations.destroy');
     //阿里通义千问 todo::正常要加进登陆后的路由
     Route::post('dashscope/generate-text', [DashScopeController::class, 'generateText']);
+
+    // 登录后可以访问的接口
+    Route::middleware('auth:api')->group(function() {
+        // 当前登录用户信息
+        Route::get('user', [UsersController::class, 'me'])
+            ->name('user.show');
+        // 上传图片
+        Route::post('images', [ImagesController::class, 'store'])
+            ->name('images.store');
+    });
 
 });
 

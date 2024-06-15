@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    public function me(Request $request)
+    {
+        return new UserResource($request->user());
+    }
     public function store(UserRequest $request)
     {
         $verifyData = \Cache::get($request->verification_key);
