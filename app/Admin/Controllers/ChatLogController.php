@@ -116,6 +116,19 @@ class ChatLogController extends AdminController
 <script src="{$highlightScript}"></script>
 <script>
     $(document).ready(function() {
+        loadMarkdown();
+    });
+
+    $(document).on('pjax:complete', function() {
+        loadMarkdown();
+    });
+
+    function loadMarkdown() {
+        if (typeof marked === 'undefined' || typeof hljs === 'undefined') {
+            setTimeout(loadMarkdown, 100);
+            return;
+        }
+
         var markdownContent = {$escapedAnswer};
         var htmlContent = marked.parse(markdownContent);
 
@@ -126,26 +139,26 @@ class ChatLogController extends AdminController
         });
 
         addCopyButtons();
+    }
 
-        function addCopyButtons() {
-            $('pre').each(function() {
-                if (!$(this).find('.copy-btn').length) {
-                    var copyButton = $('<button class="copy-btn">复制</button>');
-                    $(this).append(copyButton);
-                }
-            });
+    function addCopyButtons() {
+        $('pre').each(function() {
+            if (!$(this).find('.copy-btn').length) {
+                var copyButton = $('<button class="copy-btn">复制</button>');
+                $(this).append(copyButton);
+            }
+        });
 
-            $('.copy-btn').off('click').on('click', function() {
-                var code = $(this).siblings('code').text();
-                var tempInput = $('<textarea>');
-                $('body').append(tempInput);
-                tempInput.val(code).select();
-                document.execCommand('copy');
-                tempInput.remove();
-                alert('代码已复制到剪贴板');
-            });
-        }
-    });
+        $('.copy-btn').off('click').on('click', function() {
+            var code = $(this).siblings('code').text();
+            var tempInput = $('<textarea>');
+            $('body').append(tempInput);
+            tempInput.val(code).select();
+            document.execCommand('copy');
+            tempInput.remove();
+            alert('代码已复制到剪贴板');
+        });
+    }
 </script>
 HTML;
 
