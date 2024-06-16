@@ -1,8 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'ChatLog' => 'ChatLog',
-        'chat-log' => 'ChatLog',
+        'ChatLog' => 'AI问答日志',
+        'chat-log' => 'AI问答日志',
     ],
     'fields' => [
         'question' => '问题',
