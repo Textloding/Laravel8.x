@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with AI</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/atom-one-dark.min.css') }}">
+    <script src="{{ asset('js/highlight.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/marked.min.js') }}"></script>
     <style>
         body {
             display: flex;
@@ -32,6 +35,9 @@
         .dark-mode #answer {
             background: #1e1e1e;
         }
+        .dark-mode pre {
+            background: #000000;
+        }
         .dark-mode .btn-primary {
             background-color: #1e88e5;
             border-color: #1e88e5;
@@ -39,6 +45,35 @@
         .dark-mode .btn-secondary {
             background-color: #424242;
             border-color: #424242;
+        }
+        .form-inline {
+            display: flex;
+            align-items: flex-end;
+        }
+        .form-inline textarea {
+            flex: 1;
+            margin-right: 10px;
+        }
+        pre {
+            position: relative;
+            margin-top: 1em;
+            padding: 10px;
+            border-radius: 5px;
+            background: #000000; /* 确保背景为黑色 */
+        }
+        code {
+            font-size: 1em;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -54,20 +89,28 @@
         <div class="form-group d-flex">
             <textarea id="question" class="form-control" rows="3" required style="resize: none;"></textarea>
             <button type="submit" class="btn btn-primary" style="margin-left:10px;">提问</button>
-            
         </div>
-        
     </form>
 </div>
 
 <script>
-    $(document).ready(function() {
-        // 切换白天和夜间模式
-        $('#toggle-mode').on('click', function() {
-            $('body').toggleClass('dark-mode');
-            var modeText = $('body').hasClass('dark-mode') ? '切换到白天模式' : '切换到夜间模式';
-            $(this).text(modeText);
-        });
+$(document).ready(function() {
+    // 初始化 marked 并配置 highlight.js
+    marked.setOptions({
+        highlight: function(code, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+                return hljs.highlight(code, { language: lang }).value;
+            }
+            return hljs.highlightAuto(code).value;
+        }
+    });
+
+    // 切换白天和夜间模式
+    $('#toggle-mode').on('click', function() {
+        $('body').toggleClass('dark-mode');
+        var modeText = $('body').hasClass('dark-mode') ? '切换到白天模式' : '切换到夜间模式';
+        $(this).text(modeText);
+    });
 
     let typingTimer;
     let isPaused = false;
@@ -76,7 +119,12 @@
 
     function typeWriter(text, index) {
         if (index < text.length && !isPaused) {
-            $('#answer').append(text.charAt(index));
+            currentText += text.charAt(index);
+            $('#answer').html(marked.parse(currentText));  // 使用 marked.parse 来解析 Markdown
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);  // 手动高亮代码块
+            });
+            addCopyButtons(); // 添加复制按钮
             currentIndex = index + 1;
             typingTimer = setTimeout(function() {
                 typeWriter(text, currentIndex);
@@ -95,6 +143,7 @@
 
     function handleSubmit(submitButton) {
         $('#answer').html('');  // 清空之前的回答
+        currentText = ''; // 重置当前文本
 
         var question = $('#question').val();
         submitButton.prop('disabled', true); // 禁用按钮
@@ -110,7 +159,6 @@
             success: function(response) {
                 var text = response.answer;
                 currentIndex = 0; // 重置索引
-                currentText = text; // 保存当前文本
                 submitButton.prop('disabled', false); // 启用按钮
                 submitButton.html('暂停'); // 切换按钮文本为暂停
 
@@ -124,6 +172,7 @@
                     } else if (submitButton.text() === '提问') {
                         isPaused = false;
                         $('#answer').html(''); // 清空之前的答案
+                        currentText = ''; // 重置当前文本
                         submitButton.html('Submit'); // 恢复按钮文本
                         handleSubmit(submitButton); // 重新提交问题
                     }
@@ -142,7 +191,26 @@
         event.preventDefault(); // 确保不会刷新页面
         handleSubmit($(this));
     });
-    });
+
+    function addCopyButtons() {
+        $('pre').each(function() {
+            if (!$(this).find('.copy-btn').length) {
+                var copyButton = $('<button class="copy-btn">复制</button>');
+                $(this).append(copyButton);
+            }
+        });
+
+        $('.copy-btn').off('click').on('click', function() {
+            var code = $(this).siblings('code').text();
+            var tempInput = $('<textarea>');
+            $('body').append(tempInput);
+            tempInput.val(code).select();
+            document.execCommand('copy');
+            tempInput.remove();
+            alert('代码已复制到剪贴板');
+        });
+    }
+});
 </script>
 </body>
 </html>
