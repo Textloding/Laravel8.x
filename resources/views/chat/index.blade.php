@@ -69,36 +69,79 @@
             $(this).text(modeText);
         });
 
-        // 提交表单
-        $('#chat-form').on('submit', function(event) {
-            event.preventDefault();
-            $('#answer').html('');  // 清空之前的回答
+    let typingTimer;
+    let isPaused = false;
+    let currentIndex = 0;
+    let currentText = '';
 
-            var question = $('#question').val();
-            $.ajax({
-                url: '{{ route("chat.generate") }}',
-                method: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    question: question
-                },
-                success: function(response) {
-                    var text = response.answer;
-                    var index = 0;
-                    function typeWriter() {
-                        if (index < text.length) {
-                            $('#answer').append(text.charAt(index));
-                            index++;
-                            setTimeout(typeWriter, 50);
-                        }
-                    }
-                    typeWriter();
-                },
-                error: function() {
-                    $('#answer').html('Error occurred. Please try again.');
-                }
-            });
+    function typeWriter(text, index) {
+        if (index < text.length && !isPaused) {
+            $('#answer').append(text.charAt(index));
+            currentIndex = index + 1;
+            typingTimer = setTimeout(function() {
+                typeWriter(text, currentIndex);
+            }, 50);
+        }
+    }
+
+    function resetButton(submitButton) {
+        submitButton.prop('disabled', false); // 启用按钮
+        submitButton.html('Submit'); // 恢复按钮文本
+        submitButton.off('click').on('click', function(event) {
+            event.preventDefault();
+            handleSubmit(submitButton);
         });
+    }
+
+    function handleSubmit(submitButton) {
+        $('#answer').html('');  // 清空之前的回答
+
+        var question = $('#question').val();
+        submitButton.prop('disabled', true); // 禁用按钮
+        submitButton.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 发送中...'); // 显示加载动画
+
+        $.ajax({
+            url: '{{ route("chat.generate") }}',
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                question: question
+            },
+            success: function(response) {
+                var text = response.answer;
+                currentIndex = 0; // 重置索引
+                currentText = text; // 保存当前文本
+                submitButton.prop('disabled', false); // 启用按钮
+                submitButton.html('暂停'); // 切换按钮文本为暂停
+
+                // 按钮点击事件处理逻辑
+                submitButton.off('click').on('click', function(event) {
+                    event.preventDefault(); // 确保不会刷新页面
+                    if (submitButton.text() === '暂停') {
+                        isPaused = true;
+                        clearTimeout(typingTimer);
+                        submitButton.html('提问');
+                    } else if (submitButton.text() === '提问') {
+                        isPaused = false;
+                        $('#answer').html(''); // 清空之前的答案
+                        submitButton.html('Submit'); // 恢复按钮文本
+                        handleSubmit(submitButton); // 重新提交问题
+                    }
+                });
+
+                typeWriter(text, currentIndex);
+            },
+            error: function() {
+                $('#answer').html('Error occurred. Please try again.');
+                resetButton(submitButton);
+            }
+        });
+    }
+
+    $('#chat-form button[type="submit"]').on('click', function(event) {
+        event.preventDefault(); // 确保不会刷新页面
+        handleSubmit($(this));
+    });
     });
 </script>
 </body>
