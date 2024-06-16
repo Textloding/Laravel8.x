@@ -129,6 +129,8 @@ $(document).ready(function() {
             typingTimer = setTimeout(function() {
                 typeWriter(text, currentIndex);
             }, 50);
+        } else if (index >= text.length) {
+            $('#chat-form button[type="submit"]').html('提问'); // 输出完成后恢复按钮文本
         }
     }
 
