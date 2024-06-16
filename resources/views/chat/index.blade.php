@@ -136,7 +136,7 @@ $(document).ready(function() {
 
     function resetButton(submitButton) {
         submitButton.prop('disabled', false); // 启用按钮
-        submitButton.html('Submit'); // 恢复按钮文本
+        submitButton.html('提问'); // 恢复按钮文本
         submitButton.off('click').on('click', function(event) {
             event.preventDefault();
             handleSubmit(submitButton);
@@ -175,7 +175,7 @@ $(document).ready(function() {
                         isPaused = false;
                         $('#answer').html(''); // 清空之前的答案
                         currentText = ''; // 重置当前文本
-                        submitButton.html('Submit'); // 恢复按钮文本
+                        submitButton.html('提问'); // 恢复按钮文本
                         handleSubmit(submitButton); // 重新提交问题
                     }
                 });
@@ -183,7 +183,7 @@ $(document).ready(function() {
                 typeWriter(text, currentIndex);
             },
             error: function() {
-                $('#answer').html('Error occurred. Please try again.');
+                $('#answer').html('未知错误，请重试');
                 resetButton(submitButton);
             }
         });
