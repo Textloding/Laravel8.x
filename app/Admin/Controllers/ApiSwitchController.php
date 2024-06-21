@@ -173,7 +173,18 @@ JS;
     // 重命名方法以避免潜在的冲突
     protected function save(Request $request)
     {
+        $filePath = config_path('api_switch.php');
+        // 获取当前权限
+        $currentPerms = fileperms($filePath);
+        // 权限 & 0777 将确保我们只得到底部三位数
+        $currentPerms = $currentPerms & 0755;
+        // 如果权限不是 777，则更改权限
+        if ($currentPerms != 0755) {
+            chmod($filePath, 0755);
+        }
+
         $data = $request->except(['_token', '_method', '_previous_']);
+
 
         // 获取开关键列表
         $switchKeys = config('api_switch.switch_keys', []);
